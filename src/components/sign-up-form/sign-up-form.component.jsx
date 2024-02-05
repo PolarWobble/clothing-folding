@@ -2,6 +2,11 @@ import { useState } from "react";
 
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
 
+import FormInput from "../form-input/form-input.component.jsx";
+import Button from "../button/button.component.jsx";
+
+import './sign-up-form.styles.scss';
+
 const defaultFormFields = {
     displayName: '',
     email: '',
@@ -52,22 +57,19 @@ const SignUpForm = () => {
     };
 
     return (
-        <div>
-            <h1>Sign up with your email and password</h1>
+        <div className="sign-up-container">
+            <h2>Don't have an account?</h2>
+            <span>Sign up with your email and password</span>
             <form onSubmit={handleSubmit}>
-                <label>Display Name</label>
-                <input type="text" onChange={handleChange} name="displayName" value={displayName} required />
+                <FormInput label="Display Name" type="text" onChange={handleChange} name="displayName" value={displayName} required />
 
-                <label>Email</label>
-                <input type="email" onChange={handleChange} name="email" value={email} required />
+                <FormInput label="Email" type="email" onChange={handleChange} name="email" value={email} required />
 
-                <label>Password</label>
-                <input type="password" onChange={handleChange} name="password" value={password} required />
+                <FormInput label="Password" type="password" onChange={handleChange} name="password" value={password} required />
 
-                <label>Confirm Password</label>
-                <input type="password" onChange={handleChange} name="confirmPassword" value={confirmPassword} required />
+                <FormInput label="Confirm Password" type="password" onChange={handleChange} name="confirmPassword" value={confirmPassword} required />
 
-                <button type="submit" >Sign Up</button>
+                <Button buttonType='' type="submit" >Sign Up</Button>
             </form>
         </div>
     )
