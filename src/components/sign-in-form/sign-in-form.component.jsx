@@ -26,8 +26,8 @@ const SignInForm = () =>{
     }
 
     const signInWithGoogle = async () => {
-        const {user} = await signInWIthGooglePopup();
-        await createUserDocumentFromAuth(user);
+        await signInWIthGooglePopup();
+        
     };
 
     const handleSubmit = async (event) => {
@@ -36,7 +36,6 @@ const SignInForm = () =>{
         try {
             const {user} = await signInAuthUserWithEmailAndPassword(email, password);
             resetFormFields();
-            console.log(user);
         } catch(error) {
             if(error.code === "auth/invalid-credential") {
                 alert('Email or password incorrect');
