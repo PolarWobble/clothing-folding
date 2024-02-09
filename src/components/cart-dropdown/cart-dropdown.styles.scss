@@ -20,8 +20,8 @@
       height: 240px;
       display: flex;
       flex-direction: column;
-      overflow-y: scroll;
-      //overflow: scroll;
+      overflow: scroll;
+      scrollbar-width: none;
     }
   
     button {
