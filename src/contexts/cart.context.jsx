@@ -1,7 +1,14 @@
 import { useState, createContext, useEffect } from "react";
 
+
+const doesCartItemExists = (cartItems, specificItem) => {
+    return cartItems.find((cartItem) => cartItem.id === specificItem.id);
+}
+
 const addCartItem = (cartItems, productToAdd) => {
-    const cartItemExists = cartItems.find((cartItem) => cartItem.id === productToAdd.id);
+    
+    const cartItemExists = doesCartItemExists(cartItems, productToAdd);
+    //const cartItemExists = cartItems.find((cartItem) => cartItem.id === productToAdd.id);
 
     if (cartItemExists) {
         return cartItems.map((item) => item.id === productToAdd.id 
@@ -12,6 +19,23 @@ const addCartItem = (cartItems, productToAdd) => {
 
     return [...cartItems, {...productToAdd, quantity: 1}];
 };
+
+const removeCartItem = (cartItems, productToRemove) => {
+    const cartItemExists = doesCartItemExists(cartItems, productToRemove);
+
+    if(cartItemExists) {
+        return cartItems.map((item) => item.id === productToRemove.id 
+            ? ((item.id.quantity === 1) ? deleteCartItem(cartItems, productToRemove) : {...item, quantity: item.quantity-1})
+            : item
+        );
+    }
+}
+
+const deleteCartItem = (cartItems, deleteItem) => {
+    console.log(cartItems.filter(item => item !== deleteItem));
+    return cartItems.filter(item => item !== deleteItem);
+
+}
 
 export const CartContext = createContext(
     {
@@ -37,7 +61,15 @@ export const CartProvider = ({children}) => {
         setCartItems(addCartItem(cartItems, productToAdd));
     };
 
-    const value = {isCartOpen, setIsCartOpen, cartItems, addItemToCart, cartCount};
+    const removeItemFromCart = (productToRemove) => {
+        setCartItems(removeCartItem(cartItems, productToRemove));
+    }
+
+    const deleteItemFromCart = (deleteItem) => {
+        setCartItems(deleteCartItem(cartItems, deleteItem));
+    }
+
+    const value = {isCartOpen, setIsCartOpen, cartItems, addItemToCart, cartCount, removeItemFromCart, deleteItemFromCart};
 
     return(
         <CartContext.Provider value={value}>{children}</CartContext.Provider>

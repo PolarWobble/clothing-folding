@@ -1,0 +1,33 @@
+.heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    align-content: space-between;
+}
+
+.checkout-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+
+    img {
+        width: 20%;
+    }
+}
+
+.individual-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+
+    margin: 10px;
+
+}
+
+
+.texts{
+    width: 10%;
+}
