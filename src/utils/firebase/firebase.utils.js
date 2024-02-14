@@ -14,7 +14,9 @@ import {
   doc,
   getDoc,
   setDoc,
-  Firestore
+  Firestore,
+  collection,
+  writeBatch
 } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -41,6 +43,21 @@ export const signInWIthGooglePopup = () => signInWithPopup(auth, googleProvider)
 export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
 
 export const db = getFirestore();
+
+//creating the shop collection and documents from shop-data.js
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+  const collectionRef = collection(db, collectionKey);
+  //creating the batch for one successful transaction to new collection
+  const batch = writeBatch(db);
+  //attach writes/deletes/sets etc to batch
+  objectsToAdd.forEach((object) => {
+    const docRef =doc(collectionRef, object.title.toLowerCase());
+    batch.set(docRef, object);
+  });
+
+  await batch.commit();
+  console.log('Done');
+};
 
 export const createUserDocumentFromAuth = async (
   userAuth, 
