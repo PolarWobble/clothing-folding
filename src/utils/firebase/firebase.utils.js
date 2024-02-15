@@ -16,7 +16,9 @@ import {
   setDoc,
   Firestore,
   collection,
-  writeBatch
+  writeBatch,
+  query,
+  getDocs
 } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -44,6 +46,9 @@ export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googlePro
 
 export const db = getFirestore();
 
+
+//
+//
 //creating the shop collection and documents from shop-data.js
 export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
   const collectionRef = collection(db, collectionKey);
@@ -58,6 +63,26 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
   await batch.commit();
   console.log('Done');
 };
+//
+//
+
+
+//current implementation that firebase uses.. subject to change
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, 'categories');
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+  const categoryMap = querySnapshot.docs.reduce((accumulator, docSnapshot) => {
+    const {title, items} = docSnapshot.data();
+    accumulator[title.toLowerCase()] = items;
+    return accumulator;
+  }, {});
+
+  return categoryMap;
+}
+
+
 
 export const createUserDocumentFromAuth = async (
   userAuth, 
