@@ -9,8 +9,6 @@ export const CategoriesContext = createContext(
     }
 );
 
-
-
 //component
 export const CategoriesProvider = ({children}) => {
     const [categoriesMap, setCategoriesMap] = useState({}); //empty object instead of null, more often empty state of a map
@@ -22,7 +20,6 @@ export const CategoriesProvider = ({children}) => {
         //getCategoriesAndDocuments is async, since in useEffect => need to create new async function and call it at the bottom
         const getCategoriesMap = async () => {
             const categoryMap = await getCategoriesAndDocuments();
-            console.log(categoryMap);
             setCategoriesMap(categoryMap);
         }
         getCategoriesMap();

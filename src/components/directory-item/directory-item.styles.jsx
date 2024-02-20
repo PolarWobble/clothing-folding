@@ -1,33 +1,5 @@
 import styled from 'styled-components';
 
-export const DirectoryItemContainer = styled.div`
-  min-width: 30%;
-  height: 40vh;
-  //height: 240px;
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid black;
-  margin: 0 7.5px 15px;
-  overflow: hidden;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &.large {
-    height: 380px;
-  }
-
-  &:first-child {
-    margin-right: 7.5px;
-  }
-
-  &:last-child {
-    margin-left: 7.5px;
-  }
-`
 
 export const BackgroundImage = styled.div`
   width: 100%;
@@ -35,11 +7,12 @@ export const BackgroundImage = styled.div`
   background-size: cover;
   background-position: center;
 
-  &:hover {
-    transform: scale(1.1);
-    transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
-  }
+  background-image: ${({imageUrl}) => `url(${imageUrl})`};
 `
+
+
+
+
 
 export const BodyContainer = styled.div`
   height: 90px;
@@ -70,3 +43,32 @@ export const BodyContainer = styled.div`
   }
 `
 
+export const DirectoryItemContainer = styled.div`
+  min-width: 30%;
+  height: 40vh;
+  //height: 240px;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  margin: 0 7.5px 15px;
+  overflow: hidden;
+
+  &:hover {
+    cursor: pointer;
+
+    & ${BackgroundImage} {
+      transform: scale(1.1);
+      transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+    }
+  }
+
+  &:first-child {
+    margin-right: 7.5px;
+  }
+
+  &:last-child {
+    margin-left: 7.5px;
+  }
+`

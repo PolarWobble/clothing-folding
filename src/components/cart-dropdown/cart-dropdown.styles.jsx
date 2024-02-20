@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+
+import {
+  BaseButton, 
+  GoogleSignInButton, 
+  InvertedButton
+} from '../button/button.styles';
 
 export const CartDropdownContainer = styled.div`
   position: absolute;
@@ -13,6 +18,12 @@ export const CartDropdownContainer = styled.div`
   top: 90px;
   right: 40px;
   z-index: 5;
+
+  ${BaseButton},
+  ${GoogleSignInButton},
+  ${InvertedButton} {
+    margin-top: auto;
+  }
 `
 
 export const CartItems = styled.div`
@@ -26,8 +37,4 @@ export const CartItems = styled.div`
 export const EmptyMessage = styled.div`
   font-size: 18px;
   margin: 50px auto;
-`
-
-export const ButtonContainer = styled(Link)`
-  margin-top: auto;
 `
