@@ -19,6 +19,10 @@ export const BaseButton = styled.button`
   display: flex;
   justify-content: center;
 
+  @media only screen and (max-width: 700px){
+    scale: 60%;
+  }
+
   &:hover {
     background-color: white;
     color: black;

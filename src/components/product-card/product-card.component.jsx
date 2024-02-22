@@ -14,12 +14,15 @@ const ProductCard = ({product}) => {
 
     return(
         <ProductCardContainer>
-            <img src={imageUrl} alt={`${name}`}/>
+            <>
+                <img src={imageUrl} alt={`${name}`}/>
+                <Button buttonType='base' onClick={addProductToCart}>Add to cart</Button>
+            </>
             <Footer>
                 <Name>{name}</Name>
-                <Price>€ {price}</Price>
+                <Price>€{price}</Price>
             </Footer>
-            <Button buttonType='base' onClick={addProductToCart}>Add to cart</Button>
+            
         </ProductCardContainer>
     )
 }

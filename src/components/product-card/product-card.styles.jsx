@@ -14,6 +14,11 @@ export const ProductCardContainer = styled.div`
   align-items: center;
   position: relative;
 
+
+  @media only screen and (max-width: 700px){
+    height: 10vh;
+  }
+
   img {
     width: 100%;
     height: 95%;
@@ -27,7 +32,7 @@ export const ProductCardContainer = styled.div`
     width: 80%;
     opacity: 0.7;
     position: absolute;
-    top: 355px;
+    top: 65%;
     display: none;
   }
 
